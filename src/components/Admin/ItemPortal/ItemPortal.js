@@ -62,13 +62,13 @@ const ItemPortal = () => {
   const [isAdding, setIsAdding] = useState(false);
   const [addedItem, setAddedItem] = useState();
 
-  const Items = [
+  const [Items, setItems] = useState([
     "Dal Khichdi",
     "Biryani",
     "Dal Rice",
     "Methi Matar Malai",
     "Paneer Kofta",
-  ];
+  ]);
   const specialItemNumber = Math.floor(Math.random() * Items.length);
 
   const handleItemChange = (e) => {
@@ -78,7 +78,7 @@ const ItemPortal = () => {
 
   const addItem = () => {
     debugger;
-    Items.push(addedItem);
+    setItems((prevState) => [...prevState, addedItem])
     setIsAdding(false);
     setAddedItem("");
   }
@@ -168,7 +168,7 @@ const ItemPortal = () => {
                     variant="outlined"
                     value={addedItem}
                     onChange={(e) =>
-                      setAddedItem(e.target.value)
+                      {setAddedItem(e.target.value); console.log("added item", addedItem)}
                     }
                   />
                   <Box textAlign="center">
